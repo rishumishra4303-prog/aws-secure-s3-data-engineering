@@ -1,36 +1,71 @@
 # AWS Secure S3 Data Engineering Project
 
 ## Objective
-Build a secure AWS S3 storage workflow using IAM least-privilege access and encrypted data storage.
+Built a secure AWS S3 storage workflow using EC2, IAM roles, Python, and Boto3.
 
 ## AWS Services
 - Amazon S3
-- AWS IAM
 - Amazon EC2
+- AWS IAM
 
-## S3 Bucket Structure
-- RawData/ — stores original CSV files
-- Processed-data/ — for processed files
-- Archive/ — for archived files
+## Project Features
+- Stored CSV data in the S3 RawData/ prefix.
+- Used an EC2 IAM role for AWS access without hardcoded credentials.
+- Listed S3 objects using Python and Boto3.
+- Restricted the IAM policy to the rishu567-demo bucket.
+- Enabled S3 Block Public Access.
+- Configured SSE-S3 default encryption.
+- Added a bucket policy denying insecure HTTP transport.
 
-## Security
-- IAM role for EC2 access
-- Restricted S3 permissions
-- Deny insecure HTTP transport
-- S3 Block Public Access and encryption settings to be verified
+## Validation
+- Successfully ran s3_list_files.py from EC2.
+- Confirmed RawData/customers.csv was listed (138 bytes).
+- Python syntax check passed.
 
-## Current Progress
-- Created S3 bucket and folders
-- Uploaded customers.csv to RawData/
-- Created IAM policy and EC2 role
-- Launched EC2 and installed Python and Git
+## Security Notes
+- S3 Block Public Access is enabled.
+- Object Ownership is Bucket owner enforced.
+- Default encryption uses SSE-S3.
+- IAM policy grants ListBucket, GetObject, and PutObject on the specified bucket.
+- Review all attached policies periodically to confirm effective permissions.
 
-## Verified Progress
-- Installed boto3 in the EC2 Python environment.
-- Created `s3_list_files.py` to list objects under `RawData/`.
-- Successfully ran the script from EC2 and confirmed `RawData/customers.csv` is listed (138 bytes).
-- Python syntax check passed using `python3 -m py_compile s3_list_files.py`.
+## Future Improvements
+- Upgrade the Python environment to a supported version.
+- Add CSV validation and data processing.
+- Add automated logging and error handling.
+EOFcd /home/ec2-user/aws-data-engineer-project && cat > README.md <<'EOF'
+# AWS Secure S3 Data Engineering Project
 
-## Notes
-- S3 bucket security settings, encryption, and least-privilege permissions still need verification.
-- Python 3.9 shows a Boto3 deprecation warning; consider upgrading to Python 3.10 or later.
+## Objective
+Built a secure AWS S3 storage workflow using EC2, IAM roles, Python, and Boto3.
+
+## AWS Services
+- Amazon S3
+- Amazon EC2
+- AWS IAM
+
+## Project Features
+- Stored CSV data in the S3 RawData/ prefix.
+- Used an EC2 IAM role for AWS access without hardcoded credentials.
+- Listed S3 objects using Python and Boto3.
+- Restricted the IAM policy to the rishu567-demo bucket.
+- Enabled S3 Block Public Access.
+- Configured SSE-S3 default encryption.
+- Added a bucket policy denying insecure HTTP transport.
+
+## Validation
+- Successfully ran s3_list_files.py from EC2.
+- Confirmed RawData/customers.csv was listed (138 bytes).
+- Python syntax check passed.
+
+## Security Notes
+- S3 Block Public Access is enabled.
+- Object Ownership is Bucket owner enforced.
+- Default encryption uses SSE-S3.
+- IAM policy grants ListBucket, GetObject, and PutObject on the specified bucket.
+- Review all attached policies periodically to confirm effective permissions.
+
+## Future Improvements
+- Upgrade the Python environment to a supported version.
+- Add CSV validation and data processing.
+- Add automated logging and error handling.
