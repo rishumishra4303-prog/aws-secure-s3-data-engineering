@@ -1,4 +1,2 @@
-__pycache__/
-*.pyc
-*.save
-.env
+customers.csv
+processed/
